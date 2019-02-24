@@ -29,7 +29,7 @@ public class NotificationActivity extends AppCompatActivity
         // TODO: Create the intent that will start the ResultActivity when the user
         // taps the notification or chooses an action button
         Intent intent = new Intent(this, NotificationResultActivity.class);
-        intent.putExtra("notifyID",NOTIFY_ID);
+        intent.putExtra("notifyID", NOTIFY_ID);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFY_ID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // Store the notification ID so we can cancel it later in the ResultActivity
@@ -64,6 +64,9 @@ public class NotificationActivity extends AppCompatActivity
         builder.addAction(R.mipmap.ic_launcher, "Action 1", pendingIntent);
         builder.addAction(R.mipmap.ic_launcher, "Action 2", pendingIntent);
         // TODO: Set the lock screen visibility of the notification
+//        builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+//        builder.setVisibility(Notification.VISIBILITY_SECRET);
+        builder.setVisibility(Notification.VISIBILITY_PRIVATE);
 
 
         // TODO: Build the finished notification and then display it to the user
