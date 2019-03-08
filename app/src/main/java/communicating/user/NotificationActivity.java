@@ -5,13 +5,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class NotificationActivity extends AppCompatActivity
-        implements View.OnClickListener {
+    implements View.OnClickListener{
 
     private static final int NOTIFY_ID = 1001;
 
@@ -25,30 +25,25 @@ public class NotificationActivity extends AppCompatActivity
 
     private void createNotification() {
         // TODO: create the NotificationCompat Builder
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+
         // TODO: Create the intent that will start the ResultActivity when the user
         // taps the notification or chooses an action button
-        Intent intent = new Intent(this, NotificationResultActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFY_ID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // Store the notification ID so we can cancel it later in the ResultActivity
 
         // TODO: Set the three required items all notifications must have
-        builder.setSmallIcon(R.drawable.ic_stat_sample_notification);
-        builder.setContentTitle("Sample Notification");
-        builder.setContentText("This is a sample Notification");
+
 
         // TODO: Set the notification to cancel when the user taps on it
-        builder.setAutoCancel(true);
+
 
         // TODO: Set the large icon to be our app's launcher icon
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));
+
 
         // TODO: Set the small subtext message
-         builder.setSubText("Tap to view");
+
 
         // TODO: Set the content intent to launch our result activity
-        builder.setContentIntent(pendingIntent);
 
 
         // TODO: Add an expanded layout to the notification
@@ -61,9 +56,6 @@ public class NotificationActivity extends AppCompatActivity
 
 
         // TODO: Build the finished notification and then display it to the user
-        Notification notification = builder.build();
-        NotificationManager mgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        mgr.notify(NOTIFY_ID,notification);
 
     }
 
