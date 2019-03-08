@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnLaunchSnackbar).setOnClickListener(this);
         findViewById(R.id.btnLaunchDialog).setOnClickListener(this);
         findViewById(R.id.btnLaunchNotification).setOnClickListener(this);
+
     }
 
     @Override
