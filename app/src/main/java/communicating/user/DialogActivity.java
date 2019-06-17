@@ -11,14 +11,16 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 import communicating.user.Dialogs.CustomDialogFragment;
+import communicating.user.Dialogs.Network;
 import communicating.user.Dialogs.SimpleDialogFragment;
 import communicating.user.Dialogs.SingleChoiceDialogFragment;
 
 
 public class DialogActivity extends AppCompatActivity
-    implements View.OnClickListener,SimpleDialogFragment.SimpleDialogListener {
+        implements View.OnClickListener, SimpleDialogFragment.SimpleDialogListener, Network.NetworkDialogListener {
 
     private final String TAG = "AUC_DLG_ACTIVITY";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class DialogActivity extends AppCompatActivity
 
         // set up button click handlers
         findViewById(R.id.btnSimpleDialog).setOnClickListener(this);
+        findViewById(R.id.btnNetworkDialog).setOnClickListener(this);
         findViewById(R.id.btnShowDatePicker).setOnClickListener(this);
         findViewById(R.id.btnShowChoiceDialog).setOnClickListener(this);
         findViewById(R.id.btnShowCustomDialog).setOnClickListener(this);
@@ -37,6 +40,9 @@ public class DialogActivity extends AppCompatActivity
             case R.id.btnSimpleDialog:
                 showSimpleDialog();
                 break;
+            case R.id.btnNetworkDialog:
+                showNetworkDialog();
+                break;
             case R.id.btnShowDatePicker:
                 // TODO: Get a calendar instance
                 Calendar calendar = Calendar.getInstance();
@@ -44,9 +50,9 @@ public class DialogActivity extends AppCompatActivity
                 DatePickerDialog pickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        Log.d(TAG,String.format("Year: %d,Month: %d,Day: %d",year,month,dayOfMonth));
+                        Log.d(TAG, String.format("Year: %d,Month: %d,Day: %d", year, month, dayOfMonth));
                     }
-                },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
                 // TODO: Set the title and show the dialog
                 pickerDialog.setTitle("Choose a DateTime:");
@@ -60,6 +66,13 @@ public class DialogActivity extends AppCompatActivity
                 showCustomDialog();
                 break;
         }
+    }
+
+    private void showNetworkDialog() {
+        Network network = new Network();
+        // TODO: Use setCancelable() to make the dialog non-cancelable
+        network.setCancelable(false);
+        network.show(getSupportFragmentManager(), "NetworkDialogFragment");
     }
 
     private void showSimpleDialog() {
@@ -76,23 +89,23 @@ public class DialogActivity extends AppCompatActivity
 
     private void showChoiceDialog() {
         SingleChoiceDialogFragment complexDialog = new SingleChoiceDialogFragment();
-        complexDialog.show(getSupportFragmentManager(),"SingleChoiceDialogFragment");
+        complexDialog.show(getSupportFragmentManager(), "SingleChoiceDialogFragment");
     }
 
     @Override
     public void onPositiveResult(DialogFragment dlg) {
-        Log.d(TAG,"Dialog Positive Result");
+        Log.d(TAG, "Dialog Positive Result");
     }
 
     @Override
     public void onNegativeResult(DialogFragment dlg) {
-        Log.d(TAG,"Dialog Negative Result");
+        Log.d(TAG, "Dialog Negative Result");
 
     }
 
     @Override
     public void onNeutralResult(DialogFragment dlg) {
-        Log.d(TAG,"Dialog Neutral Result");
+        Log.d(TAG, "Dialog Neutral Result");
 
     }
 

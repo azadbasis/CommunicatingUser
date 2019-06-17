@@ -1,5 +1,6 @@
 package communicating.user;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.marcoscg.materialtoast.MaterialToast;
 
 public class ToastActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -74,5 +77,26 @@ public class ToastActivity extends AppCompatActivity implements View.OnClickList
 
         // TODO: Build a toast message that uses the custom layout
 
+    }
+
+
+    public void toastDef(View v) {
+        Toast.makeText(this, "Hello, I'm a default toast!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void toastMat(View v) {
+        MaterialToast.makeText(this, "Hello, I'm a material toast!", R.drawable.ic_warning_black_24dp, Toast.LENGTH_SHORT).show();
+    }
+
+    public void toastMatCol(View v) {
+//        MaterialToast.makeText(this, "Hello, I'm a material toast!",
+//                R.mipmap.ic_launcher, Toast.LENGTH_SHORT).setBackgroundColor(Color.RED).show();
+
+        new MaterialToast(this)
+                .setMessage("Hello, I'm a material toast!")
+                .setIcon(R.drawable.ic_warning_black_24dp)
+                .setDuration(Toast.LENGTH_SHORT)
+                .setBackgroundColor(Color.RED)
+                .show();
     }
 }

@@ -65,4 +65,31 @@
         android:layout_below="@+id/btnShowToast"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <LinearLayout
+        android:layout_below="@+id/btnShowCustomToast"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".MainActivity">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default toast"
+            android:onClick="toastDef" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Material toast"
+            android:onClick="toastMat" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Colored material toast"
+            android:onClick="toastMatCol" />
+
+    </LinearLayout>
 </RelativeLayout>
